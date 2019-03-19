@@ -22,7 +22,7 @@
 
 ##User interface:
 
-![](/Users/you-jun/Desktop/EE590SW/Elma-AutomaticCar/螢幕快照 2019-03-18 下午6.05.25.png)
+![](/Elma-AutomaticCar/螢幕快照 2019-03-18 下午6.05.25.png)
 
 ## Milestones 
 - Complete the PID controller design and tuned Ki Kp Kd -- achieve before 13 Mar(have accomplished)
