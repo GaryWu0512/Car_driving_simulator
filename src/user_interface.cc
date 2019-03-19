@@ -53,6 +53,12 @@ void UserInterface::update() {
         case 'f':
             emit(Event("turn off"));
             break;
+        case 'c':
+            emit(Event("gear up"));
+            break;
+        case 'z':
+            emit(Event("gear down"));
+            break;
         case 'q':
             //std::cout << "halting\n";
             halt();
@@ -80,10 +86,28 @@ void UserInterface::update() {
     mvprintw(16, 1, "Car Status : ");
     mvprintw(18, 22, "Gas: ");
     mvprintw(18, 5, "Car: ");
+
+    mvprintw(7, 50, "Speed Limit");
+    mvprintw(8, 53, "____");
+   
+    mvprintw(9, 52, "/");
+    mvprintw(9, 57, "\\");
+    
+   
+    mvprintw(10, 52, "|");
+    mvprintw(10, 57, "|");
+
+    mvprintw(11, 57, "/");
+    mvprintw(11, 52, "\\");
+
+    mvprintw(11, 53, "____");
+
+    mvprintw(10, 54, "%d",speed_lim);
     car_state = _car.getCarState();
     gas = _car.getGas();
+    gear_state = _car.getGearState();
 
-    if (gas%150 == 0){
+    if (gas%180 == 0){
         int random_number = rand()%5;
         speed_lim = speed_limit[random_number];
     }
@@ -100,11 +124,16 @@ void UserInterface::update() {
     }
     if (car_state == 1){
         mvprintw(18, 10, "On ");
+        mvprintw(20, 1, "Gear Status : %d   ", gear_state);
     }else{
         mvprintw(18, 10, "Off");
+        mvprintw(20, 1, "Gear Status : None");
         mvprintw(12, 15, "Car speed: 0.0  ");
         mvprintw(13, 15, "Car angle: 0.0  ");
     }
+    
+    mvprintw(22, 3, "Gear down(z) ");
+    mvprintw(22, 17, "Gear up(c) ");
 
     /*for ( int i=0; i<_stopwatch.laps().size(); i++ ) {
         mvprintw(5+i, 1, "Lap %d", _stopwatch.laps().size()-i);

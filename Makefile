@@ -6,7 +6,7 @@ CC          := g++ -std=c++14 -Wno-psabi
 DGEN        := doxygen
 
 #The Target Binary Program
-TARGET      := stopwatch
+TARGET      := elmacar
 
 #The Directories, Source, Includes, Objects, Binary and Resources
 SRCDIR      := ./src

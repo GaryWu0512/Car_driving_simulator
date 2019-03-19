@@ -19,17 +19,7 @@ namespace driving_example {
         CruiseControl(std::string name) : Process(name) {}
 
         //! Watch for events that change the desired speed.
-        void init() {
-            watch("desired speed", [this](Event& e) {
-                desired_speed = e.value();
-            });
-            watch("angle", [this](Event& e) {
-                angle = e.value();
-            });
-            watch("car state", [this](Event& e) {
-                car_state = e.value();
-            });
-        }
+        void init();
 
         //! Nothing to do to initialize    
         void start() {}
@@ -37,17 +27,7 @@ namespace driving_example {
         //! Get the velocity from the Velocity Channel, compute
         //! a simple proportional control law, and send the result
         //! to the Throttle channel.    
-        void update() {
-            if (car_state == 1){
-                //std::cout<<"size = "<<channel("Velocity").size();
-                if ( channel("Velocity").nonempty() ) {
-                    speed = channel("Velocity").latest();
-                    //std::cout<<"velo speed = "<<speed<<"\n";
-                }
-                channel("Throttle").send(-KP*(speed - desired_speed));
-                channel("Angle").send(angle);
-            }
-        }
+        void update();
 
         //! Nothing to do to stop    
         void stop() {}
