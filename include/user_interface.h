@@ -36,7 +36,7 @@ namespace driving_example {
         int car_state;
         int gear_state;
         double desire_speed;
-        int speed_limit[5] = {20,100,80,180,60};
+        int speed_limit[5] = {20,100,80,60,120};
         int speed_lim = 80;
 
     };

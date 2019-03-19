@@ -8,6 +8,9 @@ UserInterface::UserInterface(Car& carv) : Process("user input"), _car(carv) {
     initscr();   // Start ncurses
     timeout(1);  // Timeout for waiting for user input
     noecho();    // Do not echo user input to the screen
+    start_color();
+    init_pair(1,COLOR_RED,COLOR_WHITE);
+    init_pair(2,COLOR_RED,COLOR_BLACK);
     curs_set(0); // Do not show the cursor
 };
 
@@ -79,7 +82,7 @@ void UserInterface::update() {
     mvprintw(7, 22, "quit simulation(q)");
     mvprintw(10, 1, "Car Dashboard : ");
     mvprintw(12, 15, "Car speed: %.1f", _car.getSpeed());
-    mvprintw(13, 15, "Car angle: %.1f", _car.getAngle());
+    mvprintw(13, 15, "Car heading: %.1f", _car.getAngle());
     mvprintw(12, 31, "(Max speed 200)");
     mvprintw(14, 15, "Gas: %d", _car.getGas());
     mvprintw(14, 24, "/999 (Only can refuel in the off state.)");
@@ -102,7 +105,10 @@ void UserInterface::update() {
 
     mvprintw(11, 53, "____");
 
-    mvprintw(10, 54, "%d",speed_lim);
+    attron(COLOR_PAIR(2));
+    mvprintw(10, 54, "%d  ",speed_lim);
+    attroff(COLOR_PAIR(2));
+
     car_state = _car.getCarState();
     gas = _car.getGas();
     gear_state = _car.getGearState();
@@ -113,23 +119,29 @@ void UserInterface::update() {
     }
     mvprintw(16, 50, "Speed Limit: %d ", speed_lim);
     if (_car.getSpeed()>speed_lim){
+        attron(COLOR_PAIR(1));
         mvprintw(18, 50, "Overspeed !! Please slow down ");
+        attroff(COLOR_PAIR(1));
     }else{
         mvprintw(18, 50, "                              ");
     }
-    if (gas<150){
+    if (gas<300){
+        attron(COLOR_PAIR(1));
         mvprintw(18, 27, "low gas !!!");
+        attroff(COLOR_PAIR(1));
     }else{
         mvprintw(18, 27, "gas  ok !!!");
     }
     if (car_state == 1){
         mvprintw(18, 10, "On ");
         mvprintw(20, 1, "Gear Status : %d   ", gear_state);
+        mvprintw(20, 21, "(Three stages) ");
     }else{
         mvprintw(18, 10, "Off");
         mvprintw(20, 1, "Gear Status : None");
         mvprintw(12, 15, "Car speed: 0.0  ");
-        mvprintw(13, 15, "Car angle: 0.0  ");
+        mvprintw(13, 15, "Car heading: 0.0  ");
+        mvprintw(20, 21, "(Three stages) ");
     }
     
     mvprintw(22, 3, "Gear down(z) ");

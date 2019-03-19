@@ -7,6 +7,7 @@ using namespace std::chrono;
 using std::vector;
 using namespace elma;
 
+
 namespace driving_example {
     void Car::init(){
         velocity = 0;
@@ -34,7 +35,7 @@ namespace driving_example {
                 if ( channel("Angle").nonempty() ) {
                     car_angle = channel("Angle").latest();
                 }
-                gas -=1;
+                gas -=2;
                 //std::cout<<"send v1 = "<<velocity<<"\n";
                 if (_gear == 1){
                     m = 250;
@@ -76,6 +77,16 @@ namespace driving_example {
                 //std::cout<<"velocity = "<<velocity<<"\n";
             }
         }
+        speed_record.push_back(velocity);
+        angle_record.push_back(car_angle);
+    }
+
+    json Car::reporttpjson(){
+        json j;
+        j["speed"] = speed_record;
+        j["angle"] = angle_record;
+
+        return j;
     }
 
 }

@@ -85,6 +85,8 @@ namespace driving_example {
             //std::cout<<"desired speed"<<desired_speed;
             //std::cout<<"desired angle"<<angle;
         }else{
+            gear = 1;
+            emit(Event("gear", gear));
             emit(Event("car state", state));
         }
     }

@@ -38,6 +38,8 @@ namespace driving_example {
         inline int getGearState(){ return _gear; }
         inline double setGas( int gas ){ this->gas = gas; }
 
+        json reporttpjson();
+
         //! Nothing to do to stop    
         void stop() {}
 
