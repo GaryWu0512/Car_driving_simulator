@@ -79,7 +79,7 @@ namespace driving_example {
                 }
             }
             emit(Event("desired speed", desired_speed));
-            emit(Event("angle", angle));
+            emit(Event("desired angle", angle));
             emit(Event("car state", state));
             emit(Event("gear", gear));
             //std::cout<<"desired speed"<<desired_speed;

@@ -13,8 +13,8 @@ namespace driving_example {
         watch("desired speed", [this](Event& e) {
             desired_speed = e.value();
         });
-        watch("angle", [this](Event& e) {
-            angle = e.value();
+        watch("desired angle", [this](Event& e) {
+            desired_angle = e.value();
         });
         watch("car state", [this](Event& e) {
             car_state = e.value();
@@ -28,8 +28,12 @@ namespace driving_example {
                 speed = channel("Velocity").latest();
                 //std::cout<<"velo speed = "<<speed<<"\n";
             }
+            if ( channel("Angle").nonempty() ) {
+                angle = channel("Angle").latest();
+                //std::cout<<"velo speed = "<<speed<<"\n";
+            }
             channel("Throttle").send(-KP*(speed - desired_speed));
-            channel("Angle").send(angle);
+            channel("Angle_fore").send(-KP*(angle - desired_angle));
         }
     }
 }

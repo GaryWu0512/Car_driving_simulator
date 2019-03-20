@@ -18,13 +18,11 @@ namespace driving_example {
 
         public:
 
+        //! Wrap the base UserInterface process class
         UserInterface(Car& carv);
 
         void init() {}
         void start() {}
-
-        //! Display the time at the given x,y position on the screen
-        void show_time(int x, int y, high_resolution_clock::duration d);
 
         //! Update the user interface by (a) reading keyboard input and (b) writing to the screen
         void update();

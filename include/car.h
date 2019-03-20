@@ -17,27 +17,45 @@ namespace driving_example {
         //! \param name The name of the car    
         Car(std::string name) : Process(name) {}
 
-        //! Nothing to do to initialize
+        //! initialize the velocity and angle
+        //! initialize the watch command {car state, add gas, gear} from driver process
         void init();
 
-        //! To start a new simulation, this process sets
-        //! the car's velocity to zero kph.    
+        //! Nothing to do to start    
         void start() {}
 
         //! The update method gets the latest force from the 
         //! Throttle Channel, if any. Then it updates the 
         //! car's velocity, and sends it out on the Velocity
-        //! Channel.     
+        //! Channel.
+        //! Switch the car state according to the car_state command from driver
+        //! When car state is off, driver can add car gas
+        //! Restricted the force according to gear state
         void update();
 
+        //! Return the current car speed to the driver
         inline double getSpeed(){ return velocity; }
+
+        //! Return the current car heading angle to the driver
         inline double getAngle(){ return car_angle; }
+
+        //! Return the current car gas to the driver
         inline int getGas(){ return gas; }
+
+        //! Return the current car state to the driver
         inline int getCarState(){ return car_state; }
+
+        //! Return the current gas state to the driver
         inline int getGasState(){ return gas_state; }
+
+        //! Return the current cae gear state to the driver
         inline int getGearState(){ return _gear; }
+
+        //! Set the current cae gas
+        //! \param gas The desire gas
         inline double setGas( int gas ){ this->gas = gas; }
 
+        //! Record the driving process and output it as json file
         json reporttpjson();
 
         //! Nothing to do to stop    
@@ -46,6 +64,7 @@ namespace driving_example {
         private:
         double velocity;
         double force;
+        double angle_force;
         double car_angle;
         int gas = 999;
         int car_state;
@@ -55,5 +74,6 @@ namespace driving_example {
         vector<double> angle_record;
         const double k = 0.02;
         double m = 300;
+        double g = 300;
     };
 }

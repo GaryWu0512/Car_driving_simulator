@@ -11,7 +11,7 @@
 - (extra) Record the track status and output it as json file
 -  Make a driver interface
 
-##Funtion complete
+## Funtion complete
 
 - User can increase and decrease the car speed by using the user interface
 - User can change the car angle by using the user interface
@@ -20,7 +20,7 @@
 - Randomly generate speed limit sign, and send warning when driver is overspeed
 - Display Car status and information on user interface
 
-##User interface:
+## User interface:
 
 ![](/Elma-AutomaticCar/螢幕快照 2019-03-18 下午6.05.25.png)
 

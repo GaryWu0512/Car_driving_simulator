@@ -20,6 +20,7 @@ int main() {
     UserInterface ui(car);
 
     Channel throttle("Throttle");
+    Channel angle_force("Angle_fore");
     Channel velocity("Velocity");
     Channel angle("Angle");
 
@@ -28,6 +29,7 @@ int main() {
     .schedule(driver, 100_ms)
     .schedule(ui, 200_ms)
     .add_channel(throttle)
+    .add_channel(angle_force)
     .add_channel(angle)
     .add_channel(velocity)
     .init()

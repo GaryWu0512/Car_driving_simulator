@@ -18,14 +18,15 @@ namespace driving_example {
         //! \param name The name of the controller       
         Driver(std::string name) : Process(name) {}
 
-        //! initialize the desired speed
+        //! initialize the desired speed and angle
+        //! initialize the watch command {speed up, speed down, right, left, turn on, turn off, gear up, gear down}
         void init();
 
         //! Nothing to do to start
         void start() {}
 
-        //! If the desired speed is 50, change to 60,
-        //! otherwise change to 50.
+        //! Adjust the desired speed, heading angle and car state according to commands
+        //! Adjust the speed limit and force according to gear state
         void update();
  
         
@@ -33,6 +34,7 @@ namespace driving_example {
         //! Nothing to do to stop
         void stop() {}
 
+        //! Return the Car state
         inline int getState(){ return state; }
 
         private:

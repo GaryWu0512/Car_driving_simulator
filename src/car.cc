@@ -1,11 +1,14 @@
 #include <iostream>
 #include <chrono>
 
+
 #include "car.h"
 
 using namespace std::chrono;
 using std::vector;
 using namespace elma;
+
+using namespace std;
 
 
 namespace driving_example {
@@ -32,6 +35,9 @@ namespace driving_example {
                 if ( channel("Throttle").nonempty() ) {
                     force = channel("Throttle").latest();
                 }
+                if ( channel("Angle_fore").nonempty() ) {
+                    angle_force = channel("Angle_fore").latest();
+                }
                 if ( channel("Angle").nonempty() ) {
                     car_angle = channel("Angle").latest();
                 }
@@ -45,8 +51,10 @@ namespace driving_example {
                     m = 600;
                 }
                 velocity += ( delta() / 1000 ) * ( - k * velocity + force ) / m;
+                car_angle += ( delta() / 1000 ) * ( - k * car_angle + angle_force ) / g;
                 //std::cout<<"send v2 = "<<velocity<<"\n";
                 channel("Velocity").send(velocity);
+                channel("Angle").send(car_angle);
                 //std::cout << "speed = " << ","
                         // << velocity << " \n" <<"angle = "<< car_angle<<"\n"<<"gas="<<gas;
             }
@@ -58,6 +66,7 @@ namespace driving_example {
             car_angle = 0;
             _gear = 1;
             channel("Velocity").send(velocity);
+            channel("Angle").send(car_angle);
             if (gas_state == 1){
                 if (gas<999){
                     if((gas+5)>999){
@@ -83,6 +92,7 @@ namespace driving_example {
 
     json Car::reporttpjson(){
         json j;
+
         j["speed"] = speed_record;
         j["angle"] = angle_record;
 

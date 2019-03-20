@@ -14,17 +14,6 @@ UserInterface::UserInterface(Car& carv) : Process("user input"), _car(carv) {
     curs_set(0); // Do not show the cursor
 };
 
-void UserInterface::show_time(int x, int y, high_resolution_clock::duration d) {
-
-    // Print the time at the desired position.
-    // mvprintw just calls sprintf
-    mvprintw(x,y,"%d:%02d:%02d", 
-        std::chrono::duration_cast<std::chrono::minutes>(d).count(),
-        std::chrono::duration_cast<std::chrono::seconds>(d).count()%60,
-        (std::chrono::duration_cast<std::chrono::milliseconds>(d).count()%1000)/10
-    );
-}
-
 void UserInterface::update() {
 
     // USER INPUT
@@ -69,7 +58,6 @@ void UserInterface::update() {
     }
 
     // OUTPUT
-    //show_time(1,1,_stopwatch.value()); 
     mvprintw(1, 25, "Welcome to Elma Car simulator !!!");
     mvprintw(3, 1, "Instruction : ");
     mvprintw(4, 5, "speed up(w)");
@@ -113,7 +101,7 @@ void UserInterface::update() {
     gas = _car.getGas();
     gear_state = _car.getGearState();
 
-    if (gas%180 == 0){
+    if ((gas%200) == 1){
         int random_number = rand()%5;
         speed_lim = speed_limit[random_number];
     }
