@@ -32,15 +32,23 @@ void UserInterface::update() {
             break;
         case 'd':
             emit(Event("right"));
+            if (_car.getSpeed()>50){
+                bad_score+=1;
+            }
             break;
         case 'a':
             emit(Event("left"));
+            if (_car.getSpeed()>50){
+                bad_score+=1;
+            }
             break;
         case 'g':
             emit(Event("add gas"));
             break;
         case 'o':
             emit(Event("turn on"));
+            good_score = 0;
+            bad_score = 0;
             break;
         case 'f':
             emit(Event("turn off"));
@@ -51,8 +59,11 @@ void UserInterface::update() {
         case 'z':
             emit(Event("gear down"));
             break;
+        case 'p':
+            score_state = 1;
+            break;
         case 'q':
-            //std::cout << "halting\n";
+            _car.reporttpjson();
             halt();
             break;
     }
@@ -77,6 +88,7 @@ void UserInterface::update() {
     mvprintw(16, 1, "Car Status : ");
     mvprintw(18, 22, "Gas: ");
     mvprintw(18, 5, "Car: ");
+    mvprintw(25, 1, "Score section:");
 
     mvprintw(7, 50, "Speed Limit");
     mvprintw(8, 53, "____");
@@ -110,6 +122,7 @@ void UserInterface::update() {
         attron(COLOR_PAIR(1));
         mvprintw(18, 50, "Overspeed !! Please slow down ");
         attroff(COLOR_PAIR(1));
+        bad_score+=1;
     }else{
         mvprintw(18, 50, "                              ");
     }
@@ -124,16 +137,31 @@ void UserInterface::update() {
         mvprintw(18, 10, "On ");
         mvprintw(20, 1, "Gear Status : %d   ", gear_state);
         mvprintw(20, 21, "(Three stages) ");
+        good_score += 1;
+        score_state = 0;
+        mvprintw(27, 1, "                              ");
+        mvprintw(26, 1, "bad point: %f   ",bad_score);
     }else{
         mvprintw(18, 10, "Off");
         mvprintw(20, 1, "Gear Status : None");
         mvprintw(12, 15, "Car speed: 0.0  ");
         mvprintw(13, 15, "Car heading: 0.0  ");
         mvprintw(20, 21, "(Three stages) ");
+        mvprintw(26, 1, "bad point: %f   ",bad_score);
+        if (score_state == 1){
+            score = ((good_score - bad_score)/good_score) *100;
+            mvprintw(27, 0, " Driving habit score : %.1f", score);
+        }else{
+            mvprintw(27, 0, "                              ");
+        }
     }
+
+    
     
     mvprintw(22, 3, "Gear down(z) ");
     mvprintw(22, 17, "Gear up(c) ");
+
+    
 
     /*for ( int i=0; i<_stopwatch.laps().size(); i++ ) {
         mvprintw(5+i, 1, "Lap %d", _stopwatch.laps().size()-i);

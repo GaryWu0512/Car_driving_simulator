@@ -56,7 +56,7 @@ namespace driving_example {
         inline double setGas( int gas ){ this->gas = gas; }
 
         //! Record the driving process and output it as json file
-        json reporttpjson();
+        void reporttpjson();
 
         //! Nothing to do to stop    
         void stop() {}

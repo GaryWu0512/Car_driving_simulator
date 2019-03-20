@@ -1,5 +1,6 @@
 #include <iostream>
 #include <chrono>
+#include <fstream>
 
 
 #include "car.h"
@@ -90,13 +91,13 @@ namespace driving_example {
         angle_record.push_back(car_angle);
     }
 
-    json Car::reporttpjson(){
+    void Car::reporttpjson(){
         json j;
 
         j["speed"] = speed_record;
         j["angle"] = angle_record;
-
-        return j;
+        std::ofstream file("key.json");
+        file << j;
     }
 
 }
