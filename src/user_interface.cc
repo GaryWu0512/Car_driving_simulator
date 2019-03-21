@@ -89,6 +89,7 @@ void UserInterface::update() {
     mvprintw(18, 22, "Gas: ");
     mvprintw(18, 5, "Car: ");
     mvprintw(25, 1, "Score section:");
+    mvprintw(25, 18, "See score(p)");
 
     mvprintw(7, 50, "Speed Limit");
     mvprintw(8, 53, "____");
@@ -150,7 +151,9 @@ void UserInterface::update() {
         mvprintw(26, 1, "bad point: %f   ",bad_score);
         if (score_state == 1){
             score = ((good_score - bad_score)/good_score) *100;
+            attron(COLOR_PAIR(1));
             mvprintw(27, 0, " Driving habit score : %.1f", score);
+            attroff(COLOR_PAIR(1));
         }else{
             mvprintw(27, 0, "                              ");
         }

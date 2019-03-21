@@ -1,36 +1,68 @@
-# Elma-AutomaticCar
+# Car-driving-simulator
 
-## Project goals
+## Project goals :
+
+
+Users can simulate real driving conditions through the car driving simulator. The user interface will generate a random speed limit, and the driver must follow the speed limit to adjust the car speed.
+The user interface will display information to the user such as speed, car heading angle, oil volume, and gear state.
+When the simulation is finished, the system will score the driver according to the driving process.
+Overspeed, unnormal turning speed, improper gear shift will reduce the score.
+Finally, the driving process will be recorded as a JSON file for later analysis.
+
+------
+
+## Project Architecture :
+
 - Simulation to use a more realistic simulation of a car's velocity and angle
     * Use PID controller to contol the Car speed and angle.
     * Set criteria to prevent the car from rotating too far or the acceleration is too fast.
-- Add some changes in the state of the car by the instructions sent by the driver, like change gears, speed up, slow down, and stop.
-    * Use StateMachine to change the car's driving status.
-    * Use Watch to monitor the state of the car. Prompt or warning
-- Export data taken from simulations and show with plots that the car's information and status(Speed, angle, time, the status of the car, oil quantity)
-- (extra) Record the track status and output it as json file
--  Make a driver interface
 
-## Funtion complete
+- Add some changes in the state of the car by the instructions sent by the driver.
+    * Trun on/off : Launch the car or turn off the car
+    * Speed up/down : User can adjust the car speed 
+    * Turn right/left : User can adjust the car heading angle (Car heading angle is based on polar coordinate）
+    * Filling up the gas : Automatically fill up the gas
+    * See score : Display the score based on the driving process.
+    * Quit : Shut down the simulator and generate the JSON file 
 
-- User can increase and decrease the car speed by using the user interface
-- User can change the car angle by using the user interface
-- Change the car status between On/Off by using the user interface
-- Filling up the cas when car is at Off state by using the user interface
-- Randomly generate speed limit sign, and send warning when driver is overspeed
-- Display Car status and information on user interface
+------
 
-## User interface:
+## User Operation guide :
 
-![](/Elma-AutomaticCar/螢幕快照 2019-03-18 下午6.05.25.png)
+- Interface :
 
-## Milestones 
-- Complete the PID controller design and tuned Ki Kp Kd -- achieve before 13 Mar(have accomplished)
-- Test controller according to the given value  -- achieve before 13 Mar (have accomplished)
-- Add state change function and combine with controller -- achieve before 17 Mar (have accomplished)
-- Test car can change the status when driver send the command -- achieve before 17 Mar (have accomplished)
-- Plots the data from simulations for user-readable -- achieve before 20 Mar
-- Record the track status and output it as json file (TBD)
-- Make a driver interface (have accomplished)
-- Calculate mileage distance
+<img src="interface.png" alt="Smiley face" height="42" width="42">
+
+
+- Operation rule :
+
+    * Refuel gas : Only refuel the gas in the off state.
+    * Car gear : 
+        - Gear position 1 : Maximum torque, Speed limit : 50
+        - Gear position 2 : Medium torque, Speed limit : 100
+        - Gear position 3 : Minimum torque, Speed limit :200
+    * User must adjust the speed according to the speed limit flag displayed on the interface. If the speed exceeds the limit, the warning will jump out and the driver score will be deducted.
+    * "Low gas" warning will jump out when the gas is lower than 200
+    * If user does not decelerate while turning the heading angle the drivwer score will be deducted.
+
+- Instruction Set :
+    - **o** : Turn on the car
+    - **f** : Turn off the car
+    - **w** : Speed up
+    - **s** : Speed down
+    - **a** : Turn left
+    - **d** : Turn right
+    - **g** : Refuel the gas
+    - **c** : Gear up
+    - **z** : Gear down
+    - **p** : View score
+    - **q** : Quit the simulator
+
+## Execution :
+
+To run the stopwatch, type
+
+    bin/carsimulator
+
+## Result : 
 
