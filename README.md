@@ -1,4 +1,4 @@
-# Car-driving-simulator
+# Car_driving_simulator
 
 ## Project goals :
 
