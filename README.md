@@ -72,3 +72,15 @@ To run the stopwatch, type
 
 <img src="images/record.png" height="300" width="600">
 
+**Accelerate**
+
+<img src="images/accer.png" height="300" width="600">
+
+**Turning left**
+
+<img src="images/turning.png" height="300" width="600">
+
+**U turn**
+
+<img src="images/uturn.png" height="300" width="600">
+
