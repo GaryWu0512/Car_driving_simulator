@@ -42,7 +42,9 @@ Finally, the driving process will be recorded as a JSON file for later analysis.
         - Gear position 2 : Medium torque, Speed limit : 100
         - Gear position 3 : Minimum torque, Speed limit :200
     * User must adjust the speed according to the speed limit flag displayed on the interface. If the speed exceeds the limit, the warning will jump out and the driver score will be deducted.
+         <img src="images/overspeed.png" height="40" width="150">
     * "Low gas" warning will jump out when the gas is lower than 200
+         <img src="images/lowgas.png" height="40" width="150">
     * If user does not decelerate while turning the heading angle the drivwer score will be deducted.
 
 - Instruction Set :
@@ -65,4 +67,8 @@ To run the stopwatch, type
     bin/carsimulator
 
 ## Result : 
+
+- Driving process record JSON file analysis in Python Jupyter:
+
+<img src="images/record.png" height="300" width="600">
 
