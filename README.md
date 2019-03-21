@@ -3,7 +3,7 @@
 ## Project goals :
 
 
-Users can simulate real driving conditions through the car driving simulator. The user interface will generate a random speed limit, and the driver must follow the speed limit to adjust the car speed.
+Users can simulate real driving conditions through the car driving simulator. The user interface will generate a random speed limit, and the driver must follow the speed limit to adjust the car speed.
 The user interface will display information to the user such as speed, car heading angle, oil volume, and gear state.
 When the simulation is finished, the system will score the driver according to the driving process.
 Overspeed, unnormal turning speed, improper gear shift will reduce the score.
@@ -31,17 +31,17 @@ Finally, the driving process will be recorded as a JSON file for later analysis.
 
 - Interface :
 
-<img src="interface.png" alt="Smiley face" height="42" width="42">
+<img src="images/interface.png" height="400" width="600">
 
 
 - Operation rule :
 
-    * Refuel gas : Only refuel the gas in the off state.
+    * Refuel gas : Only refuel the gas in the off state.
     * Car gear : 
-        - Gear position 1 : Maximum torque, Speed limit : 50
-        - Gear position 2 : Medium torque, Speed limit : 100
-        - Gear position 3 : Minimum torque, Speed limit :200
-    * User must adjust the speed according to the speed limit flag displayed on the interface. If the speed exceeds the limit, the warning will jump out and the driver score will be deducted.
+        - Gear position 1 : Maximum torque, Speed limit : 50
+        - Gear position 2 : Medium torque, Speed limit : 100
+        - Gear position 3 : Minimum torque, Speed limit :200
+    * User must adjust the speed according to the speed limit flag displayed on the interface. If the speed exceeds the limit, the warning will jump out and the driver score will be deducted.
     * "Low gas" warning will jump out when the gas is lower than 200
     * If user does not decelerate while turning the heading angle the drivwer score will be deducted.
 
