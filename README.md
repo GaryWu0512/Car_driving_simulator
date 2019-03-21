@@ -52,7 +52,7 @@ Finally, the driving process will be recorded as a JSON file for later analysis.
     - **s** : Speed down
     - **a** : Turn left
     - **d** : Turn right
-    - **g** : Refuel the gas
+    - **g** : Refuel the gas
     - **c** : Gear up
     - **z** : Gear down
     - **p** : View score
