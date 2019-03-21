@@ -31,14 +31,14 @@ Finally, the driving process will be recorded as a JSON file for later analysis.
 
 - Interface :
 
-<img src="images/interface.png" height="100" width="100">
+<img src="images/interface.png" height="400" width="600">
 
 
 - Operation rule :
 
     * Refuel gas : Only refuel the gas in the off state.
     * Car gear : 
-        - Gear position 1 : Maximum torque, Speed limit : 50
+        - Gear position 1 : Maximum torque, Speed limit : 50
         - Gear position 2 : Medium torque, Speed limit : 100
         - Gear position 3 : Minimum torque, Speed limit :200
     * User must adjust the speed according to the speed limit flag displayed on the interface. If the speed exceeds the limit, the warning will jump out and the driver score will be deducted.
