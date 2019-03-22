@@ -1,4 +1,4 @@
-# Car-driving-simulator
+# Car_driving_simulator
 
 ## Project goals :
 
@@ -59,7 +59,17 @@ Finally, the driving process will be recorded as a JSON file for later analysis.
     - **z** : Gear down
     - **p** : View score
     - **q** : Quit the simulator
+    
+## Installation :
 
+To install the car simulator, type
+ ```
+   git clone https://github.com/GaryWu0512/Car_driving_simulator.git
+   cd Car_driving_simulator
+   docker run -v $PWD:/source -it klavins/elma:latest bash
+   make
+ ```
+ 
 ## Execution :
 
 To run the stopwatch, type
@@ -67,6 +77,9 @@ To run the stopwatch, type
     bin/carsimulator
 
 ## Result : 
+- Driver score based on driving process:
+
+<img src="images/score.png" height="60" width="300">
 
 - Driving process record JSON file analysis in Python Jupyter:
 
@@ -83,4 +96,9 @@ To run the stopwatch, type
 **U turn**
 
 <img src="images/uturn.png" height="300" width="600">
+
+
+## References
+
+[elma](https://github.com/klavinslab/elma)
 
