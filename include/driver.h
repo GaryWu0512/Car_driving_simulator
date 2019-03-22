@@ -42,6 +42,7 @@ namespace driving_example {
         double angle;
         int gear = 1;
         int state = 0;
+        double speed;
 
     };
 }

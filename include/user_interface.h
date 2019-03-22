@@ -37,12 +37,12 @@ namespace driving_example {
         int gear_state;
         int score_state = 0;
         double desire_speed;
-        int speed_limit[5] = {20,100,80,60,120};
+        int speed_limit[5] = {80,60,100,20,120};
         int speed_lim = 80;
         double good_score;
         double bad_score;
         double score;
-
+        int index = 0;
     };
 
 }

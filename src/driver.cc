@@ -10,10 +10,22 @@ namespace driving_example {
 
     void Driver::init() {
         watch("speed up", [this](Event& e) {
-            desired_speed +=5;
+            if ( channel("Velocity").nonempty() ) {
+                speed = channel("Velocity").latest();
+                //std::cout<<"velo speed = "<<speed<<"\n";
+            }
+            if (abs(speed-desired_speed)<5){
+                desired_speed +=5;
+            }
         });
         watch("speed down", [this](Event& e) {
-            desired_speed -=5;
+            if ( channel("Velocity").nonempty() ) {
+                speed = channel("Velocity").latest();
+                //std::cout<<"velo speed = "<<speed<<"\n";
+            }
+            if (abs(speed-desired_speed)<5){
+                desired_speed -=5;
+            }
         });
         watch("right", [this](Event& e) {
             if (angle>359){

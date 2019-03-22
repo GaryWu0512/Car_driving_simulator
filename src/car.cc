@@ -30,8 +30,9 @@ namespace driving_example {
 
     void Car::update(){
         if (car_state == 1){
-            if (gas<1){
-                car_state = 0;
+            if (gas<2){
+                gas = 0;
+                emit(Event("turn off"));
             }else{
                 if ( channel("Throttle").nonempty() ) {
                     force = channel("Throttle").latest();
@@ -42,7 +43,11 @@ namespace driving_example {
                 if ( channel("Angle").nonempty() ) {
                     car_angle = channel("Angle").latest();
                 }
-                gas -=2;
+                if (velocity > 1){
+                    gas -=2;
+                }else{
+                    gas -=1;
+                }
                 //std::cout<<"send v1 = "<<velocity<<"\n";
                 if (_gear == 1){
                     m = 250;

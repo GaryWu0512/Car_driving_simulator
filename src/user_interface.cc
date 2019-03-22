@@ -83,7 +83,7 @@ void UserInterface::update() {
     mvprintw(12, 15, "Car speed: %.1f", _car.getSpeed());
     mvprintw(13, 15, "Car heading: %.1f", _car.getAngle());
     mvprintw(12, 31, "(Max speed 200)");
-    mvprintw(14, 15, "Gas: %d", _car.getGas());
+    mvprintw(14, 15, "Gas: %03d", _car.getGas());
     mvprintw(14, 24, "/999 (Only can refuel in the off state.)");
     mvprintw(16, 1, "Car Status : ");
     mvprintw(18, 22, "Gas: ");
@@ -114,11 +114,15 @@ void UserInterface::update() {
     gas = _car.getGas();
     gear_state = _car.getGearState();
 
-    if ((gas%200) == 1){
-        int random_number = rand()%5;
-        speed_lim = speed_limit[random_number];
+    if ((gas%200) == 1){ 
+        speed_lim = speed_limit[index];
+        index+=1;
+        if (index == 5){
+            index = 0;
+        }
     }
     mvprintw(16, 50, "Speed Limit: %d ", speed_lim);
+    mvprintw(17, 50, "Next Speed Limit: %d ", speed_limit[index+1]);
     if (_car.getSpeed()>speed_lim){
         attron(COLOR_PAIR(1));
         mvprintw(18, 50, "Overspeed !! Please slow down ");
@@ -127,7 +131,7 @@ void UserInterface::update() {
     }else{
         mvprintw(18, 50, "                              ");
     }
-    if (gas<300){
+    if (gas<200){
         attron(COLOR_PAIR(1));
         mvprintw(18, 27, "low gas !!!");
         attroff(COLOR_PAIR(1));

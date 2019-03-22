@@ -31,13 +31,13 @@ INCDEP      := -I$(INCDIR)
 #Files
 HEADERS     := $(wildcard ./include/*.h)
 SOURCES     := $(wildcard ./src/*.cc)
-SOURCES		:= $(filter-out ./src/unit_test.cc,$(SOURCES))
+#SOURCES		:= $(filter-out ./src/unit_test.cc,$(SOURCES))
 OBJECTS     := $(patsubst %.cc, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
 NON_MAIN_OBJECTS     := $(filter-out ./build/main.o,$(OBJECTS))
 DGENCONFIG  := docs.config
 
 #Defauilt Make
-all: directories $(TARGETDIR)/$(TARGET) bin/test
+all: directories $(TARGETDIR)/$(TARGET) #bin/test
 
 docs: docs/index.html
 
@@ -63,9 +63,9 @@ spotless: clean
 	@$(RM) -rf build bin html latex
 
 #Unit Tester
-bin/test: $(NON_MAIN_OBJECTS) $(HEADERS) ./src/unit_test.cc ./src/test_main.cpp
-	$(CC) $(CFLAGS) $(INC) -c -o test_main.o ./src/test_main.cpp
-	$(CC) $(CFLAGS) -o bin/test test_main.o $(NON_MAIN_OBJECTS) $(LIB)
+#bin/test: $(NON_MAIN_OBJECTS) $(HEADERS) ./src/unit_test.cc ./src/test_main.cpp
+	#$(CC) $(CFLAGS) $(INC) -c -o test_main.o ./src/test_main.cpp
+	#$(CC) $(CFLAGS) -o bin/test test_main.o $(NON_MAIN_OBJECTS) $(LIB)
 
 #Link
 $(TARGETDIR)/$(TARGET): $(OBJECTS) $(HEADERS)
